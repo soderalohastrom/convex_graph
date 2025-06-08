@@ -1,28 +1,50 @@
-# Initial AI Memory App Setup
-  
-This is a project built with [Chef](https://chef.convex.dev) using [Convex](https://convex.dev) as its backend.
-  
-This project is connected to the Convex deployment named [`moonlit-pika-456`](https://dashboard.convex.dev/d/moonlit-pika-456).
-  
-## Project structure
-  
-The frontend code is in the `app` directory and is built with [Vite](https://vitejs.dev/).
-  
-The backend code is in the `convex` directory.
-  
-`npm run dev` will start the frontend and backend servers.
+# AI Memory Agent & Prompt Playground
 
-## App authentication
+This project is a Convex-based application designed as a proof-of-concept and testing ground for AI-powered thought augmentation and categorization. It allows users to input raw thoughts, which are then "enriched" by an AI agent that leverages a user-specific memory graph. The core focus is on refining the AI's system prompts to achieve nuanced and contextually-aware responses.
 
-Chef apps use [Convex Auth](https://auth.convex.dev/) with Anonymous auth for easy sign in. You may wish to change this before deploying your app.
+The application uses a Hawaiian metaphorical framework for categorizing thoughts:
+- 🌋 **Mauka (Visionary):** Red to Orange
+- 🌱 **Kula (Practical):** Green to Emerald
+- 🌊 **Makai (Emotional):** Blue to Cyan
+- 🌫️ **Kapu (Sacred):** Purple to Indigo
 
-## Developing and deploying your app
+A key feature goal is a split-screen interface allowing for real-time editing and testing of the AI's system prompt.
 
-Check out the [Convex docs](https://docs.convex.dev/) for more information on how to develop with Convex.
-* If you're new to Convex, the [Overview](https://docs.convex.dev/understanding/) is a good place to start
-* Check out the [Hosting and Deployment](https://docs.convex.dev/production/) docs for how to deploy your app
-* Read the [Best Practices](https://docs.convex.dev/understanding/best-practices/) guide for tips on how to improve you app further
+## Tech Stack
 
-## HTTP API
+- **Backend:** [Convex](https://convex.dev)
+- **Frontend:** [React](https://react.dev/) with [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **AI:** [OpenAI](https://openai.com/)
+- **Authentication:** [Convex Auth](https://auth.convex.dev/)
 
-User-defined http routes are defined in the `convex/router.ts` file. We split these routes into a separate file from `convex/http.ts` to allow us to prevent the LLM from modifying the authentication routes.
+## Project Structure
+
+- `src/`: Contains the React frontend code.
+- `convex/`: Contains the Convex backend functions and schema.
+- `memory-bank/`: Contains documentation, including this PRD, to maintain project context.
+- `docs/`: Contains supplementary documentation and vision statements for the parent "Hui Hui Mana'o" project.
+
+## Getting Started
+
+1.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+
+2.  **Set up Environment Variables:**
+    Create a `.env.local` file in the root directory and add your Convex and OpenAI API keys:
+    ```
+    CONVEX_DEPLOYMENT=...
+    VITE_CONVEX_URL=...
+    CONVEX_OPENAI_BASE_URL=...
+    CONVEX_OPENAI_API_KEY=...
+    ```
+
+3.  **Run the Development Servers:**
+    This command will start both the frontend (Vite) and backend (Convex) servers.
+    ```bash
+    npm run dev
+    ```
+
+The application will be available at `http://localhost:5173`.

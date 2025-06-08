@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { useState } from "react";
 import EntitiesPage from "./EntitiesPage";
 import ThoughtsFeed from "./ThoughtsFeed";
+import PromptEditor from "./PromptEditor";
 
 type Page = "thoughts" | "entities";
 
@@ -16,10 +17,8 @@ export default function App() {
         <h2 className="text-xl font-semibold accent-text">AI Memory Agent</h2>
         <SignOutButton />
       </header>
-      <main className="flex-1 flex flex-col items-center justify-start p-4 sm:p-8">
-        <div className="w-full max-w-2xl mx-auto">
-          <Content />
-        </div>
+      <main className="flex-1 flex">
+        <Content />
       </main>
       <Toaster />
     </div>
@@ -83,8 +82,15 @@ function Content() {
             </button>
           </nav>
 
-          {currentPage === "thoughts" && <ThoughtsFeed />}
-          {currentPage === "entities" && <EntitiesPage />}
+          <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-white shadow-lg rounded-lg p-6">
+              {currentPage === "thoughts" && <ThoughtsFeed />}
+              {currentPage === "entities" && <EntitiesPage />}
+            </div>
+            <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col">
+              <PromptEditor />
+            </div>
+          </div>
         </div>
       </Authenticated>
     </div>

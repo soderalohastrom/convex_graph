@@ -16,6 +16,12 @@ const applicationTables = {
     enrichedContent: v.optional(v.string()),
     processing: v.optional(v.boolean()), // To indicate if enrichment is in progress
   }).index("by_userId", ["userId"]),
+
+  prompts: defineTable({
+    userId: v.id("users"),
+    promptText: v.string(),
+    version: v.number(),
+  }).index("by_userId_and_version", ["userId", "version"]),
 };
 
 export default defineSchema({

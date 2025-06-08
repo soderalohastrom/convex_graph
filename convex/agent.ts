@@ -23,33 +23,25 @@ export const enrichThought = internalAction({
       // For now, api.entities.getEntities will use the auth context of the action, which is null.
       // This needs to be an internal query that accepts userId.
       const entities = await ctx.runQuery(internal.entities.getEntitiesForUser, { userId: args.userId });
-
-
       const entityNames = entities.map(e => e.name).join(", ");
 
+      // Fetch the latest system prompt
+      const latestPrompt = await ctx.runQuery(api.prompts.getPrompts);
+      const systemPrompt = latestPrompt[0]?.promptText ?? "You are a helpful assistant."; // Default prompt
+
       // 2. Construct a prompt for the AI
-      const prompt = `
+      const userMessage = `
 User's thought: "${args.originalContent}"
-
 User's memory (entities): ${entityNames || "No entities defined yet."}
-
-Based on the user's thought and their memory, enrich the thought.
-Identify key entities mentioned or implied in the thought.
-If entities from memory are relevant, briefly incorporate information about them.
-If new entities are mentioned, acknowledge them.
-Keep the enriched thought concise and preserve the original meaning.
-Do not repeat the original thought verbatim in your enrichment. Focus on adding context or connections.
-For example, if the thought is "Thinking about my trip to Paris" and "Paris" is in memory as "Capital of France, known for Eiffel Tower",
-an enrichment could be: "Recalling the trip to Paris, the city of lights and the iconic Eiffel Tower."
-If the thought is "My dog Max is playful" and "Max" is in memory as "Golden Retriever, loves fetch",
-an enrichment could be: "Max, the energetic Golden Retriever who loves playing fetch, is certainly playful."
-
-Enriched thought:`;
+`;
 
       // 3. Call OpenAI
       const response = await openai.chat.completions.create({
         model: "gpt-4o-mini",
-        messages: [{ role: "user", content: prompt }],
+        messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userMessage }
+        ],
         max_tokens: 150,
       });
 
@@ -74,3 +66,17 @@ Enriched thought:`;
 });
 
 // updateThoughtWithEnrichment was moved to thoughts.ts
+
+export const rerunAllThoughts = internalAction({
+  args: { userId: v.id("users") },
+  handler: async (ctx, args) => {
+    const thoughts = await ctx.runQuery(api.thoughts.getThoughts);
+    for (const thought of thoughts) {
+      await ctx.runAction(internal.agent.enrichThought, {
+        thoughtId: thought._id,
+        userId: args.userId,
+        originalContent: thought.originalContent,
+      });
+    }
+  },
+});

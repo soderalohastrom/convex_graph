@@ -17,6 +17,7 @@ import type * as agent from "../agent.js";
 import type * as auth from "../auth.js";
 import type * as entities from "../entities.js";
 import type * as http from "../http.js";
+import type * as prompts from "../prompts.js";
 import type * as router from "../router.js";
 import type * as thoughts from "../thoughts.js";
 
@@ -33,6 +34,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   entities: typeof entities;
   http: typeof http;
+  prompts: typeof prompts;
   router: typeof router;
   thoughts: typeof thoughts;
 }>;
