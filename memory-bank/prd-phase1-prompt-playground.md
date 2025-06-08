@@ -77,5 +77,5 @@ This document outlines the requirements for the "Thought Augmentation & Prompt P
 
 ## 9. Open Questions
 
-- What should the default "initial" system prompt be?
+- What should the default "initial" system prompt be? In this case we have our intial prompt, but in the future perhaps this will need to be seeded by the user initially.
 - How should the UI for selecting prompt versions be presented? (e.g., dropdown with timestamps, list with previews).
