@@ -8,9 +8,9 @@ import App from "./App";
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode data-oid="ujec.9r">
-    <ConvexAuthProvider client={convex} data-oid="49hrmkt">
-      <App data-oid="q35_c0f" />
+  <StrictMode>
+    <ConvexAuthProvider client={convex}>
+      <App />
     </ConvexAuthProvider>
   </StrictMode>,
 );

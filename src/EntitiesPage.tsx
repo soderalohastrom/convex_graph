@@ -46,24 +46,19 @@ export default function EntitiesPage() {
   };
 
   return (
-    <div className="space-y-8" data-oid="uly59pl">
-      <div data-oid=":16tpl8">
-        <h2
-          className="text-2xl font-semibold text-slate-800 mb-4"
-          data-oid="zwzoy6y"
-        >
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-semibold text-slate-800 mb-4">
           Add New Memory (Entity)
         </h2>
         <form
           onSubmit={handleSubmit}
           className="space-y-4 p-6 bg-slate-50 rounded-lg shadow"
-          data-oid="il9ej9p"
         >
-          <div data-oid="hykrpm.">
+          <div>
             <label
               htmlFor="name"
               className="block text-sm font-medium text-slate-700"
-              data-oid="2demql1"
             >
               Name
             </label>
@@ -74,14 +69,12 @@ export default function EntitiesPage() {
               onChange={(e) => setName(e.target.value)}
               placeholder="E.g., Max, Paris, My Car"
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              data-oid="i2ztiw5"
             />
           </div>
-          <div data-oid="s29n6av">
+          <div>
             <label
               htmlFor="type"
               className="block text-sm font-medium text-slate-700"
-              data-oid="vwaazjc"
             >
               Type
             </label>
@@ -92,14 +85,12 @@ export default function EntitiesPage() {
               onChange={(e) => setType(e.target.value)}
               placeholder="E.g., Pet, City, Object"
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              data-oid="aav614w"
             />
           </div>
-          <div data-oid="03jycl5">
+          <div>
             <label
               htmlFor="description"
               className="block text-sm font-medium text-slate-700"
-              data-oid="w-o6qs5"
             >
               Description
             </label>
@@ -110,55 +101,41 @@ export default function EntitiesPage() {
               placeholder="E.g., My golden retriever, Capital of France, 2021 Honda Civic"
               rows={3}
               className="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              data-oid="47nvjz7"
             />
           </div>
           <button
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            data-oid="dfs.fod"
           >
             Add Entity
           </button>
         </form>
       </div>
 
-      <div data-oid="z.u-y0t">
-        <h2
-          className="text-2xl font-semibold text-slate-800 mb-4"
-          data-oid="53m:a1n"
-        >
+      <div>
+        <h2 className="text-2xl font-semibold text-slate-800 mb-4">
           My Memories
         </h2>
         {entities.length === 0 ? (
-          <p className="text-slate-600" data-oid="8_2w.a8">
+          <p className="text-slate-600">
             You haven't added any memories yet. Use the form above to add some!
           </p>
         ) : (
-          <ul className="space-y-3" data-oid="mlkv:ow">
+          <ul className="space-y-3">
             {entities.map((entity) => (
               <li
                 key={entity._id}
                 className="p-4 bg-white rounded-lg shadow flex justify-between items-start"
-                data-oid="ovmjruc"
               >
-                <div data-oid="6xri3js">
-                  <h3
-                    className="text-lg font-semibold text-indigo-700"
-                    data-oid="u160bvy"
-                  >
+                <div>
+                  <h3 className="text-lg font-semibold text-indigo-700">
                     {entity.name}{" "}
-                    <span
-                      className="text-sm text-slate-500 font-normal"
-                      data-oid="b80y2b3"
-                    >
+                    <span className="text-sm text-slate-500 font-normal">
                       ({entity.type})
                     </span>
                   </h3>
-                  <p className="text-slate-600" data-oid="6ujpyw0">
-                    {entity.description}
-                  </p>
-                  <p className="text-xs text-slate-400 mt-1" data-oid="ual:71c">
+                  <p className="text-slate-600">{entity.description}</p>
+                  <p className="text-xs text-slate-400 mt-1">
                     Added: {new Date(entity._creationTime).toLocaleDateString()}
                   </p>
                 </div>
@@ -166,7 +143,6 @@ export default function EntitiesPage() {
                   onClick={() => handleDelete(entity._id, entity.name)}
                   className="ml-4 text-red-500 hover:text-red-700 font-medium text-sm"
                   aria-label={`Delete ${entity.name}`}
-                  data-oid="3km.4iq"
                 >
                   Delete
                 </button>

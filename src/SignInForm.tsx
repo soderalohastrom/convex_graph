@@ -9,7 +9,7 @@ export function SignInForm() {
   const [submitting, setSubmitting] = useState(false);
 
   return (
-    <div className="w-full" data-oid="wm63pdn">
+    <div className="w-full">
       <form
         className="flex flex-col gap-4"
         onSubmit={(e) => {
@@ -26,15 +26,13 @@ export function SignInForm() {
             setSubmitting(false);
           });
         }}
-        data-oid="901avrb"
       >
         <input
-          className="input-field"
+          className="input-field text-[#FDF6F600]"
           type="email"
           name="email"
           placeholder="Email"
           required
-          data-oid="bsvuk_m"
         />
 
         <input
@@ -43,19 +41,13 @@ export function SignInForm() {
           name="password"
           placeholder="Password"
           required
-          data-oid="364q0mz"
         />
 
-        <button
-          className="auth-button"
-          type="submit"
-          disabled={submitting}
-          data-oid="k50cnju"
-        >
+        <button className="auth-button" type="submit" disabled={submitting}>
           {flow === "signIn" ? "Sign in" : "Sign up"}
         </button>
-        <div className="text-center text-sm text-slate-600" data-oid="-d0mbne">
-          <span data-oid="8-ugl73">
+        <div className="text-center text-sm text-slate-600">
+          <span>
             {flow === "signIn"
               ? "Don't have an account? "
               : "Already have an account? "}
@@ -64,24 +56,17 @@ export function SignInForm() {
             type="button"
             className="text-blue-500 cursor-pointer"
             onClick={() => setFlow(flow === "signIn" ? "signUp" : "signIn")}
-            data-oid="4sg32te"
           >
             {flow === "signIn" ? "Sign up instead" : "Sign in instead"}
           </button>
         </div>
       </form>
-      <div className="flex items-center justify-center my-3" data-oid="djbdzgh">
-        <hr className="my-4 grow" data-oid="89h-p.f" />
-        <span className="mx-4 text-slate-400 " data-oid=":sbq_:l">
-          or
-        </span>
-        <hr className="my-4 grow" data-oid="vg9vdkt" />
+      <div className="flex items-center justify-center my-3">
+        <hr className="my-4 grow" />
+        <span className="mx-4 text-slate-400 ">or</span>
+        <hr className="my-4 grow" />
       </div>
-      <button
-        className="auth-button"
-        onClick={() => void signIn("anonymous")}
-        data-oid="0yqfyms"
-      >
+      <button className="auth-button" onClick={() => void signIn("anonymous")}>
         Sign in anonymously
       </button>
     </div>
